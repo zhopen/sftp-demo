@@ -12,9 +12,16 @@ put {file} /          ----KO
 ```
 
 # Client
-
+交互式
 ```
 sftp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  -P 10022 sftp@localhost
 ```
-
+非交互式
+```
+sftp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  -P 10022 sftp@localhost <<<'put file1.txt upload' 
+sftp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  -P 10022 sftp@localhost <<<'ls -l' 
+sftp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  -P 10022 sftp@localhost <<<'get upload/file1.txt file2.txt'
+# noninteractive ssh password provider
+sshpass -p sftp sftp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  -P 10022 sftp@localhost <<<'get upload/file1.txt file3.txt'
+```
 
